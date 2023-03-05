@@ -20,6 +20,7 @@ public class ProductMethods {
     public void discount(List<Product> list) {
         List<Double> discountProduct = list.stream()
                 .filter(v -> v.getType().equals("Book"))
+                .filter(Product::getDiscount)
                 .map(Product::getDiscountPrice)
                 .toList();
 

@@ -9,21 +9,21 @@ public class Main {
         ProductMethods pm = new ProductMethods();
 
         List<Product> productList = new ArrayList<>();
-        productList.add(new Product("Book", 240, 10, LocalDateTime.now().minusHours(1)));
-        productList.add(new Product("Book", 2000, 10, LocalDateTime.now().minusHours(2)));
-        productList.add(new Product("Movie", 260, 10, LocalDateTime.now().minusHours(3)));
-        productList.add(new Product("Book", 250, 10, LocalDateTime.now().minusHours(4)));
-        productList.add(new Product("Magazine", 200, 10, LocalDateTime.now().minusHours(6)));
-        productList.add(new Product("CD-Driver", 250, 10, LocalDateTime.now().minusHours(1)));
-        productList.add(new Product("Book", 249, 10, LocalDateTime.now().minusHours(1)));
+        productList.add(new Product("Book", 240, true, LocalDateTime.now().minusHours(1)));
+        productList.add(new Product("Book", 2000, true, LocalDateTime.now().minusHours(2)));
+        productList.add(new Product("Movie", 260, true, LocalDateTime.now().minusHours(3)));
+        productList.add(new Product("Book", 250, false, LocalDateTime.now().minusHours(4)));
+        productList.add(new Product("Magazine", 200, false, LocalDateTime.now().minusHours(6)));
+        productList.add(new Product("CD-Driver", 250, false, LocalDateTime.now().minusHours(1)));
+        productList.add(new Product("Book", 249, true, LocalDateTime.now().minusHours(1)));
 
         List<Product> productList1 = new ArrayList<>();
-        productList1.add(new Product("Picture", 50, 10, LocalDateTime.now(). minusYears(1)));
-        productList1.add(new Product("Book", 40, 10, LocalDateTime.now(). minusYears(0)));
-        productList1.add(new Product("Book", 74, 10, LocalDateTime.now(). minusYears(0)));
-        productList1.add(new Product("Book", 75, 10, LocalDateTime.now(). minusYears(0)));
-        productList1.add(new Product("Book", 76, 10, LocalDateTime.now(). minusYears(0)));
-        productList1.add(new Product("Newspaper", 10, 10, LocalDateTime.now(). minusYears(1)));
+        productList1.add(new Product("Picture", 50, false, LocalDateTime.now(). minusYears(1)));
+        productList1.add(new Product("Book", 40, true, LocalDateTime.now(). minusYears(0)));
+        productList1.add(new Product("Book", 74, true, LocalDateTime.now(). minusYears(0)));
+        productList1.add(new Product("Book", 75, true, LocalDateTime.now(). minusYears(0)));
+        productList1.add(new Product("Book", 76, true, LocalDateTime.now(). minusYears(0)));
+        productList1.add(new Product("Newspaper", 10, false, LocalDateTime.now(). minusYears(1)));
 
         System.out.println("Task 1:");
         pm.over250(productList);

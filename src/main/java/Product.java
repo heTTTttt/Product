@@ -4,13 +4,14 @@ import java.util.Date;
 public class Product {
     private String type;
     private double price;
-    private double discountPercent;
+    private boolean discount;
+    private double discountPercent = 10;
     private LocalDateTime dateAdded;
 
-    public Product(String type, double price, double discountPercent, LocalDateTime dateAdded) {
+    public Product(String type, double price, boolean discount, LocalDateTime dateAdded) {
         this.type = type;
         this.price = price;
-        this.discountPercent = discountPercent;
+        this.discount = discount;
         this.dateAdded = dateAdded;
     }
 
@@ -22,8 +23,8 @@ public class Product {
         return price;
     }
 
-    public double getDiscountPercent() {
-        return discountPercent;
+    public boolean getDiscount() {
+        return discount;
     }
 
     public LocalDateTime getDateAdded() {
@@ -31,13 +32,9 @@ public class Product {
     }
 
     public double getDiscountPrice() {
-        double discountAmount = getPrice() * (getDiscountPercent() / 100);
-        return getPrice() - discountAmount;
+        double discountAmount = getPrice() * (discountPercent / 100);
+        return price - discountAmount;
     }
-
-//    public String toString() {
-//        return  "Type: " + getType() + " | " + "Price: " + getPrice();
-//    }
 
     public String toString() {
         return "Product{" +
