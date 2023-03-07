@@ -1,9 +1,12 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ProductMethods {
+
+    double discount = 10;
     // Task 1
     public void over250(List<Product> list) {
         List<Product> collect = list.stream()
@@ -17,57 +20,55 @@ public class ProductMethods {
     }
 
     // Task 2
-    public void discount(List<Product> list) {
-        List<Double> discountProduct = list.stream()
+    public List<Product> discount(List<Product> list) {
+        return list.stream()
                 .filter(v -> v.getType().equals("Book"))
                 .filter(Product::getDiscount)
-                .map(Product::getDiscountPrice)
+                .map(v -> new Product(v.getType(), v.getPrice() * (1 - discount / 100),
+                     v.getDiscount(), v.getDateAdded()))
                 .toList();
-
-        discountProduct.forEach(System.out::println);
     }
 
     // Task 3
-        public Product findCheapestBook(List<Product> productList) throws ProductNotFoundException {
-            Optional<Product> cheapestBook = productList.stream()
-                    .filter(p -> p.getType().equals("Book"))
-                    .min(Comparator.comparing(Product::getPrice));
+    public Product findCheapestBook(List<Product> productList) throws ProductNotFoundException {
+        Optional<Product> cheapestBook = productList.stream()
+                .filter(p -> p.getType().equals("Book"))
+                .min(Comparator.comparing(Product::getPrice));
 
-            if (cheapestBook.isPresent()) {
-                return cheapestBook.get();
-            } else {
-                throw new ProductNotFoundException("Продукт [категорія: Book] не знайдено.");
-            }
+        if (cheapestBook.isPresent()) {
+            return cheapestBook.get();
+        } else {
+            throw new ProductNotFoundException("Продукт [категорія: Book] не знайдено.");
         }
+    }
 
-        // Task 4
-        public void lastThreeProducts(List<Product> list) {
-            List<Product> latestProducts = list.stream()
-                    .sorted(Comparator.comparing(Product::getDateAdded).reversed())
-                    .limit(3)
-                    .toList();
-
-            latestProducts.forEach(System.out::println);
-        }
-
-        // Task 5
-        public void generalPriceCountUnder75(List<Product> list, LocalDateTime dateAdded) {
-        List<Double> productList = Collections.singletonList(list.stream()
-                .filter(v -> v.getType().equals("Book")
-                        && v.getDateAdded().equals(dateAdded)
-                        && v.getPrice() <= 75)
+    // Task 4
+    public void lastThreeProducts(List<Product> list) {
+        List<Product> latestProducts = list.stream()
+                .sorted(Comparator.comparing(Product::getDateAdded).reversed())
                 .limit(3)
+                .toList();
+
+        latestProducts.forEach(System.out::println);
+    }
+
+    // Task 5
+    public void generalPriceCountUnder75(List<Product> list, LocalDateTime dateAdded) {
+        LocalDate currentDate = LocalDate.now();
+        List<Double> productList = Collections.singletonList(list.stream()
+                .filter(v -> v.getType().equals("Book"))
+                .filter(product -> product.getDateAdded().getYear() == currentDate.getYear()).limit(3)
                 .mapToDouble(Product::getPrice)
                 .sum());
 
         productList.forEach(System.out::println);
-        }
+    }
 
-        // Task 6
-        public Map groupedTypes(List<Product> list) {
+    // Task 6
+    public Map<String, List<Product>> groupedTypes(List<Product> list) {
 
-            return list.stream()
-                    .collect(Collectors.groupingBy(Product::getType));
-            }
-        }
+        return list.stream()
+                .collect(Collectors.groupingBy(Product::getType));
+    }
+}
 

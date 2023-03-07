@@ -29,7 +29,7 @@ public class Main {
         pm.over250(productList);
         System.out.println("======================");
         System.out.println("Task 2:");
-        pm.discount(productList);
+        System.out.println(pm.discount(productList));
         System.out.println("======================");
         System.out.println("Task 3:");
         System.out.println(pm.findCheapestBook(productList));

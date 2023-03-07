@@ -31,17 +31,12 @@ public class Product {
         return dateAdded;
     }
 
-    public double getDiscountPrice() {
-        double discountAmount = getPrice() * (discountPercent / 100);
-        return price - discountAmount;
-    }
-
     public String toString() {
         return "Product{" +
-                "type='" + type + '\'' +
-                ", price=" + price +
-                ", discountPercent=" + discountPercent +
-                ", dateAdded=" + dateAdded +
-                '}';
+                "type = '" + type + '\'' +
+                ", price = " + price +
+                ", discountPercent = " + discountPercent + "% " +
+                ", dateAdded = " + dateAdded +
+                '}' + "\n";
     }
 }
